@@ -1,0 +1,17 @@
+[RE]
+num [0-9]
+funcName [a-z]
+className [A-Z]
+leftParen (
+rightParen )
+
+[GM]
+Proc = Stmt
+Stmt = Class
+Stmt = Func
+Class = className leftParen rightParen Args
+Func = leftParen funcName Args rightParen
+Args = Arg Args
+Args = null
+Arg =  num
+Arg = Func

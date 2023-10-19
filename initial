@@ -1,0 +1,15 @@
+#include <algorithm>
+#include <cstdio>
+#include <iostream>
+#include <utility>
+#include <vector>
+using namespace std;
+
+typedef vector<pair<string, string>> token_info;
+typedef vector<pair<string, string>> left_token;
+typedef vector<pair<string, string>> token_input;
+
+struct AST {
+  string grammar;
+  vector<AST *> childrens;
+};

@@ -1,0 +1,3 @@
+settings = {'scanner': True, 're_rule': ['num', 'funcName', 'className', 'leftParen', 'rightParen'], 'parser': True, 'gm_rule': ['Args', 'Class', 'Func', 'Proc', 'Stmt', 'Arg'], 'gm_getin_rule': 'Proc', 'gm_nullable_rule': ['Args']}
+gm_rule = {'Proc': ['Stmt'], 'Stmt': ['Class', 'Func'], 'Class': [['gclassName', 'gleftParen', 'grightParen', 'Args']], 'Func': [['gleftParen', 'gfuncName', 'Args', 'grightParen']], 'Args': [['Arg', 'Args'], 'null'], 'Arg': ['gnum', 'Func']}
+re_rule = {'num': [[['0to9']]], 'funcName': [[['atoz']]], 'className': [[['AtoZ']]], 'leftParen': [[['(']]], 'rightParen': [[[')']]]}

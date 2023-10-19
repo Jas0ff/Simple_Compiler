@@ -1,0 +1,48 @@
+settings = {
+    "scanner": True,
+    "parser": False,
+    "re_rule": ["NUM", "ID", "OP", "LPR", "RPR"],
+    "gm_rule": ["Proc", "Stmt", "Class", "Func", "Args", "Arg"],
+    "gm_getin_rule": "Proc",
+    "gm_nullable_rule": ["Args"],
+}
+
+gm_rule = {
+    "Proc": ["Stmt"],
+    "Stmt": ["Class", "Func"],
+    "Class": [["gclassName", "gleftParen", "grightParen", "Args"]],
+    "Func": [["gleftParen", "gfuncName", "Args", "grightParen"]],
+    "Args": [["Arg", "Args"], "null"],
+    "Arg": ["gnum", "Func"],
+}
+
+re_rule = {
+    "NUM": [
+        [
+            "1to9",
+            ["all", "0to9"],
+        ],
+        "0",
+    ],
+    "ID": [
+        [
+            ["AtoZ", "atoz"],
+            ["all", "AtoZ", "atoz"],
+        ],
+    ],
+    "OP": [
+        [
+            ["+", "-", "*", "/", "="],
+        ],
+    ],
+    "LPR": [
+        [
+            "(",
+        ]
+    ],
+    "RPR": [
+        [
+            ")",
+        ]
+    ],
+}

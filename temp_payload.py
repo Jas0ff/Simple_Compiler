@@ -1,0 +1,3 @@
+setting = {'scanner': True, 're_rule': ['ID', 'STRLIT', 'LBR', 'RBR', 'DOT'], 'parser': True, 'gm_rule': ['program', 'stmts', 'stmts', 'stmt', 'stmt', 'stmt', 'primary', 'primary_tail', 'primary_tail', 'primary_tail'], 'gm_getin_rule': 'program', 'gm_nullable_rule': ['stmts', 'stmt', 'primary_tail']}
+gm_rule = {'program': ['stmts'], 'stmts': [['stmt', 'stmts'], 'null'], 'stmt': ['primary', 'gSTRLIT', 'null'], 'primary': [['gID', 'primary_tail']], 'primary_tail': [['gDOT', 'gID', 'primary_tail'], ['gLBR', 'stmt', 'gRBR', 'primary_tail'], 'null']}
+re_rule = {'ID': [[['AtoZ', 'atoz', '_]'], ['all', 'AtoZ', 'atoz', '0to9', '_]']]], 'STRLIT': [[['"'], ['[^"]'], ['*"']]], 'LBR': [[['(']]], 'RBR': [[[')']]], 'DOT': [[['.']]]}

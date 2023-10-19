@@ -1,0 +1,83 @@
+/*****************|
+|       env       |
+|*****************/
+bool debug = false;
+
+/**************************|
+|       control_func       |
+|**************************/
+string getfullinput(string);
+bool scanner(string, token_info &);
+bool parser(token_input);
+bool nullable(left_token (*)(token_input));
+
+/***********************|
+|       main_flow       |
+|***********************/
+int main() {
+  string input = "";
+  token_info tokens;
+  AST grammar_tree;
+
+  input = getfullinput(input);
+  if (!scanner(input, tokens)) {
+    cout << "invalid input" << endl; // invalid in scanner
+    return 0;
+  }
+
+  if (debug) {
+    for (auto token : tokens)
+      cout << token.first << " ";
+    cout << endl;
+  }
+
+  //if (!parser(tokens)) {
+  //  cout << "invalid input" << endl; // invalid in parser
+  //  return 0;
+  //}
+
+  for (auto token : tokens)
+    cout << token.first << " " << token.second << endl;
+
+  return 0;
+}
+
+bool scanner(string input, token_info &tokens) {
+  while (input.size()) {
+    string token = "";
+    int rule_num = 0;
+
+    for (auto rule : rules) {
+      if (token.size() != 0)
+        break;
+
+      token = rule(input, "");
+      if(debug){
+        cout<<"token:"<<token<<endl;
+        cout<<"input:"<<input<<endl;
+      }
+      rule_num++;
+    }
+
+    if (token.size() == 0)
+      // input.substr(1, input.size()-1)
+      return false;
+    else {
+      rule_num--;
+      if (rule_name[rule_num] != "SPACE" && rule_name[rule_num] != "EOL")
+        tokens.push_back({rule_name[rule_num], token});
+
+      input = input.substr(token.size(), input.size() - token.size());
+    }
+  }
+  return true;
+}
+
+string getfullinput(string input) {
+  string line;
+  while (getline(cin, line)) {
+    input += line + "\n";
+  }
+
+  return input;
+}
